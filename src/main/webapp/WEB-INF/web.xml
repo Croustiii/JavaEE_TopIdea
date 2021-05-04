@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>Topaidi</display-name>
+  
+  	<servlet>
+		<servlet-name>Home</servlet-name>
+		<servlet-class>fr.epsi.servlet.HomeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Home</servlet-name>
+		<url-pattern>/home</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>Subscribe</servlet-name>
+		<servlet-class>fr.epsi.servlet.SubscribeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Subscribe</servlet-name>
+		<url-pattern>/subscribe</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>ListIdeas</servlet-name>
+		<servlet-class>fr.epsi.servlet.ListIdeasServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListIdeas</servlet-name>
+		<url-pattern>/list-ideas</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>CreateIdea</servlet-name>
+		<servlet-class>fr.epsi.servlet.CreateIdeaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateIdea</servlet-name>
+		<url-pattern>/create-idea</url-pattern>
+	</servlet-mapping>
+	
+
+  	<servlet>
+		<servlet-name>RateIdeaServlet</servlet-name>
+		<servlet-class>fr.epsi.servlet.RateIdeaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RateIdeaServlet</servlet-name>
+		<url-pattern>/rates-idea</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CreateRateIdea</servlet-name>
+		<servlet-class>fr.epsi.servlet.CreateRateIdeaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreateRateIdea</servlet-name>
+		<url-pattern>/create-rateIdea</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Leaderboard</servlet-name>
+		<servlet-class>fr.epsi.servlet.LeaderboardServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Leaderboard</servlet-name>
+		<url-pattern>/leaderboard</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>Admin</servlet-name>
+		<servlet-class>fr.epsi.servlet.AdminServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Admin</servlet-name>
+		<url-pattern>/admin</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- Gestion de la sécurité -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>secure</web-resource-name>
+			<url-pattern>/home</url-pattern>
+			<url-pattern>/list-ideas</url-pattern>
+			<url-pattern>/create-rateIdea</url-pattern>
+			<url-pattern>/rates-idea</url-pattern>
+			<url-pattern>/create-rateIdea</url-pattern>
+			<url-pattern>/leaderboard</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>0</role-name>
+			<role-name>1</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<!-- Gestion de la sécurité -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>adminsecure</web-resource-name>
+			<url-pattern>/admin</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>1</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>secureRealm</realm-name>
+		<form-login-config>
+			<form-login-page>/home</form-login-page>
+			<form-error-page>/loginError.jsp</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-role>
+		<role-name>0</role-name>
+	</security-role>
+	<security-role>
+		<role-name>1</role-name>
+	</security-role>
+  
+</web-app>
